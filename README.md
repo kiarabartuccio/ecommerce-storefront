@@ -2,6 +2,8 @@
 
 A multi-page e-commerce storefront built with HTML, CSS, JavaScript, jQuery, JSON, and XML. The application demonstrates product discovery, browser-based account state, cart management, checkout, and responsive interface design.
 
+![E-Commerce Storefront home page](images/ecommerce-storefront.jpg)
+
 ## Quick Start
 
 **Windows:** Download the repository ZIP, extract it, and double-click `start-demo.bat`. The site opens at `http://localhost:8000`.
