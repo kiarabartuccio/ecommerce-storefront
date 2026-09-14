@@ -2,6 +2,19 @@
 
 A multi-page e-commerce storefront built with HTML, CSS, JavaScript, jQuery, JSON, and XML. The application demonstrates product discovery, browser-based account state, cart management, checkout, and responsive interface design.
 
+## Quick Start
+
+**Windows:** Download the repository ZIP, extract it, and double-click `start-demo.bat`. The site opens at `http://localhost:8000`.
+
+**macOS/Linux:**
+
+```bash
+chmod +x start-demo.sh
+./start-demo.sh
+```
+
+Press `Ctrl+C` in the terminal when finished.
+
 ## Features
 
 - Product catalogue with category filtering and pagination
