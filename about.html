@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- 
+        CHARACTER ENCODING
+        Ensures special characters display correctly
+    -->
+    <meta charset="UTF-8">
+
+    <!-- 
+        PAGE TITLE
+        Displayed in the browser tab
+    -->
+    <title>MyShop - About / Contact</title>
+
+    <!-- 
+        RESPONSIVE VIEWPORT
+        Allows the page to scale correctly on mobile devices
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+        MAIN STYLESHEET
+        Applies global site styling
+    -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- 
+        JQUERY LIBRARY
+        Used for DOM manipulation and UI interactions
+    -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- 
+        JAVASCRIPT FILES
+        Loaded with 'defer' so HTML loads first
+    -->
+    <script src="js/ui.js" defer></script>        <!-- Header behavior & dark mode -->
+    <script src="js/products.js" defer></script>  <!-- Product utilities -->
+    <script src="js/cart.js" defer></script>      <!-- Cart logic -->
+    <script src="js/auth.js" defer></script>      <!-- Login/session handling -->
+    <script src="js/search.js" defer></script>    <!-- Search autocomplete -->
+</head>
+
+<body>
+    <!-- 
+        PAGE PURPOSE
+        Provides information about MyShop and contact details
+    -->
+
+    <!-- HEADER-->
+    <header class="site-header">
+
+        <!-- BRAND LOGO -->
+        <div class="logo">
+            <a href="index.html">
+                <span>my</span><span>Shop</span>
+            </a>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="search-wrapper">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search products..." 
+                aria-label="Search products">
+
+            <!-- Search suggestions populated dynamically -->
+            <div 
+                id="search-suggestions" 
+                class="search-suggestions" 
+                aria-live="polite">
+            </div>
+        </div>
+
+        <!-- HEADER ICONS -->
+        <div class="header-right">
+
+            <!-- Dark mode toggle -->
+            <button 
+                id="dark-mode-toggle" 
+                class="icon-button" 
+                aria-label="Toggle dark mode">
+                🌓
+            </button>
+
+            <!-- Cart link with live item count -->
+            <a 
+                href="cart.html" 
+                class="icon-button cart-link" 
+                aria-label="View cart">
+                <span>Cart</span> 🛒 <span id="cart-count">0</span>
+            </a>
+
+            <!-- Account / login icon -->
+            <a 
+                href="login.html" 
+                class="icon-button" 
+                id="account-link">
+                👤
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION -->
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="about.html">Customer Service</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+            <h1>About MyShop</h1>
+        </section>
+
+        <!-- ABOUT/CONTACT CONTENT -->
+        <section class="about-page">
+
+            <!-- About description -->
+            <p>
+                This is a front-end-only demo eCommerce website using your provided product and review data.
+            </p>
+
+            <p>
+                No real payments are processed. All information is stored in cookies / session storage on your browser.
+            </p>
+
+            <!-- CONTACT INFORMATION -->
+            <h2>Contact</h2>
+            <p>Email: info@myshop.test</p>
+        </section>
+
+    </main>
+
+    <!--FOOTER  -->
+    <footer class="site-footer">
+
+        <!-- FOOTER CONTENT COLUMNS -->
+        <div class="footer-cols">
+
+            <!-- ABOUT LINKS -->
+            <div>
+                <h4>Get to Know Us</h4>
+                <a href="about.html">About</a><br>
+                <a href="about.html">Contact</a>
+            </div>
+
+            <!-- SHOP BY DEPARTMENT -->
+            <div>
+                <h4>Shop by Department</h4>
+                <a href="products.html?category=electronics">Electronics</a><br>
+                <a href="products.html?category=home-kitchen">Home &amp; Kitchen</a><br>
+                <a href="products.html?category=sports-outdoors">Sports &amp; Outdoors</a>
+            </div>
+
+            <!-- NEWSLETTER SIGNUP -->
+            <div>
+                <h4>Stay in the Loop</h4>
+
+                <!-- Front-end only newsletter form -->
+                <form class="newsletter-form">
+                    <label for="newsletter-email">Newsletter</label><br>
+
+                    <input 
+                        type="email" 
+                        id="newsletter-email" 
+                        placeholder="Enter your email">
+
+                    <!-- Redirects to registration page -->
+                    <a href="register.html">
+                        <button 
+                            type="button" 
+                            class="btn secondary">
+                            Sign up
+                        </button>
+                    </a>
+                </form>
+            </div>
+
+            <!-- SOCIAL MEDIA LINKS -->
+            <div>
+                <h4>Connect with Us</h4>
+                <p 
+                    class="social-icons" 
+                    aria-label="Social media links">
+
+                    <a href="https://www.facebook.com/" aria-label="Visit our Facebook page">ⓕ</a>
+                    <a href="https://www.instagram.com/" aria-label="Visit our Instagram profile">📸</a>
+                    <a href="https://x.com/" aria-label="Visit our Twitter profile">𝕏</a>
+                </p>
+                <p>Questions? info@myshop.test</p>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <p class="footer-bottom">
+            &copy; <span id="year"></span> MyShop Demo. All rights reserved.
+        </p>
+
+    </footer>
+</body>
+</html>

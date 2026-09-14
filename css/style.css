@@ -1,0 +1,795 @@
+/* Enable smooth scrolling when clicking links that jump to sections */
+html {
+    scroll-behavior: smooth; /* Makes scrolling animated instead of instant */
+}
+
+
+/* :root stores global variables usable everywhere, -- for custom properties */
+:root {
+    --bg: #e3e6e6;              /* Main page background color */
+    --bg-alt: #ffffff;          /* Background for cards and sections */
+    --text: #111111;            /* Default text color */
+    --accent: #febd69;          /* Accent color (buttons/highlights) */
+    --accent-dark: #f3a847;     /* Darker accent for hover */
+    --header-bg: #131921;       /* Top header background */
+    --header-sub-bg: #232f3e;   /* Navigation bar background */
+    --border: #d5d9d9;          /* Default border color */
+}
+
+/* These override variables when body has class="dark" */
+body.dark {
+    --bg: #0f1111;              /* Dark background */
+    --bg-alt: #111319;          /* Dark card background */
+    --text: #f5f5f5;            /* Light text */
+    --accent: #febd69;          /* Accent stays the same */
+    --accent-dark: #f3a847;     /* Accent hover stays the same */
+    --header-bg: #050708;       /* Dark header background */
+    --header-sub-bg: #111827;   /* Dark nav background */
+    --border: #2b3138;          /* Dark border color */
+}
+
+/* Apply box sizing to all elements */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* Padding + border included in width/height */
+}
+
+/* body */
+
+body {
+    margin: 0; /* Remove default browser margin */
+    font-family: Arial, Helvetica, sans-serif; /* Set font */
+    background: var(--bg); /* Use background variable */
+    color: var(--text); /* Use text color variable */
+}
+
+/* links */
+
+a {
+    color: inherit; /* Use same color as surrounding text */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Show underline on hover */
+}
+
+/* buttons */
+
+button {
+    font-family: inherit; /* Buttons use same font as text */
+}
+
+/* Header */
+
+
+.site-header {
+    position: sticky; /* Sticks to top when scrolling */
+    top: 0; /* Stick at top */
+    z-index: 100; /* Stay above other elements */
+    background: var(--header-bg); /* Header background color */
+    color: #ffffff; /* White text */
+    padding: 0.4rem 0.75rem; /* Inner spacing */
+    display: grid; /* Use CSS grid */
+    grid-template-columns: auto minmax(0, 1fr) auto; /* Layout */
+    grid-template-areas:
+        "logo search actions"
+        "nav nav nav";
+    row-gap: 0.4rem; /* Space between rows */
+}
+
+/* logo */
+
+.logo {
+    grid-area: logo; /* Place in logo area */
+    display: flex; /* Flexbox */
+    align-items: center; /* Center vertically */
+}
+
+
+.logo a {
+    display: inline-flex; /* Inline flex */
+    align-items: baseline; /* Align text nicely */
+    gap: 0.05rem; /* Small space between text */
+    padding: 0.2rem 0.4rem; /* Click padding */
+    border: 1px solid transparent; /* Invisible border */
+    border-radius: 2px; /* Rounded edges */
+    color: #ffffff; /* White text */
+    font-weight: 700; /* Bold */
+    font-size: 1.15rem; /* Larger text */
+}
+
+.logo a span:first-child {
+    font-weight: 400; /* Lighter weight for first word */
+}
+
+.logo a:hover {
+    border-color: #ffffff; /* Show border on hover */
+    text-decoration: none; /* No underline */
+}
+
+/* Search bar */
+
+.search-wrapper {
+    grid-area: search; /* Place in search area */
+    display: flex; /* Flex layout */
+    align-items: stretch; /* Equal height */
+    max-width: 650px; /* Max width */
+    margin: 0 auto; /* Center */
+    position: relative; /* Needed for dropdown */
+}
+
+#search-input {
+    flex: 1; /* Fill space */
+    padding: 0.45rem 0.6rem; /* Inner spacing */
+    border-radius: 4px 0 0 4px; /* Round left side */
+    border: none; /* Remove border */
+    font-size: 0.95rem; /* Text size */
+}
+
+.search-wrapper::after {
+    content: "🔍"; /* Search icon */
+    display: inline-flex; /* Flex */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    padding: 0 0.75rem; /* Padding */
+    background: var(--accent); /* Accent background */
+    border-radius: 0 4px 4px 0; /* Round right side */
+    font-size: 1rem; /* Icon size */
+}
+
+/* search suggestios */
+
+.search-suggestions {
+    position: absolute; /* Positioned relative to search */
+    top: 120%; /* Below search bar */
+    left: 0; /* Align left */
+    right: 0; /* Align right */
+    background: var(--bg-alt); /* Card background */
+    color: var(--text); /* Text color */
+    border: 1px solid var(--border); /* Border */
+    border-radius: 0 0 4px 4px; /* Rounded bottom */
+    display: none; /* Hidden by default */
+    max-height: 260px; /* Limit height */
+    overflow-y: auto; /* Scroll if needed */
+    z-index: 150; /* Above header */
+}
+
+.search-suggestions div {
+    padding: 0.35rem 0.5rem; /* Spacing */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.search-suggestions div:hover {
+    background: #f0f2f2; /* Highlight */
+}
+
+/* header actions */
+
+.header-right {
+    grid-area: actions; /* Right side */
+    display: flex; /* Flex layout */
+    align-items: stretch; /* Equal height */
+    gap: 0.4rem; /* Space between buttons */
+}
+
+.icon-button {
+    border-radius: 2px; /* Slight rounding */
+    border: 1px solid transparent; /* Invisible border */
+    background: transparent; /* No background */
+    color: #ffffff; /* White text */
+    padding: 0.2rem 0.4rem; /* Padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Text size */
+    display: inline-flex; /* Flex */
+    align-items: center; /* Center vertically */
+    gap: 0.25rem; /* Space between icon/text */
+}
+
+.icon-button:hover {
+    border-color: #ffffff; /* Show border */
+    text-decoration: none; /* No underline */
+}
+
+#dark-mode-toggle {
+    font-size: 0.85rem; /* Slightly smaller text */
+}
+
+/* account */
+
+#account-link {
+    display: inline-flex; /* Flex */
+    flex-direction: column; /* Stack vertically */
+    align-items: flex-start; /* Align left */
+    justify-content: center; /* Center vertically */
+    font-size: 0.8rem; /* Base size */
+    line-height: 1.1; /* Tight spacing */
+}
+
+#account-link::before {
+    content: "Hello, sign in"; /* Top text */
+    font-size: 0.7rem; /* Small text */
+    opacity: 0.8; /* Slight fade */
+}
+
+#account-link::after {
+    content: "Account & Lists"; /* Bottom text */
+    font-size: 0.8rem; /* Size */
+    font-weight: 700; /* Bold */
+}
+
+/* cart */
+
+.cart-link {
+    position: relative; /* Allows internal positioning */
+    font-weight: 700; /* Bold */
+}
+
+#cart-count {
+    color: var(--accent); /* Accent color */
+    font-weight: 700; /* Bold */
+    margin-left: 0.15rem; /* Small spacing */
+}
+
+/* nav */
+
+.main-nav {
+    grid-area: nav; /* Nav row */
+    display: flex; /* Flex */
+    align-items: center; /* Center vertically */
+    gap: 0.5rem; /* Space between links */
+    padding: 0.25rem 0.6rem; /* Padding */
+    background: var(--header-sub-bg); /* Background */
+    font-size: 0.85rem; /* Text size */
+}
+
+.main-nav a {
+    color: #ffffff; /* White text */
+    padding: 0.15rem 0.35rem; /* Click padding */
+    border-radius: 2px; /* Rounded */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.main-nav a:hover {
+    text-decoration: none; /* No underline */
+    border: 1px solid #ffffff; /* Border */
+}
+
+/* layout */
+
+main {
+    padding: 0.75rem 0.75rem 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #a88734;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: #f0c14b;
+    color: #111;
+}
+
+.btn.primary {
+    background: var(--accent);
+    border-color: #a88734;
+}
+
+.btn.primary:hover {
+    background: var(--accent-dark);
+}
+
+.btn.secondary {
+    background: #f3f3f3;
+    border-color: #d5d9d9;
+}
+
+/* hero(first look of page setup */
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content {
+    background: linear-gradient(135deg, #f5f6f6, #ffffff);
+    border-radius: 4px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 4px rgba(15, 17, 17, 0.15);
+}
+
+.hero-content h1 {
+    font-size: 1.7rem;
+    margin: 0 0 0.35rem;
+}
+
+.hero-banner {
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(15, 17, 17, 0.15);
+}
+
+.hero-slide {
+    display: none;
+    padding: 1rem;
+    font-size: 0.95rem;
+}
+
+.hero-slide.active {
+    display: block;
+}
+
+/* grids */
+
+.categories,
+.featured {
+    margin-top: 1.25rem;
+}
+
+.categories h2,
+.featured h2,
+.page-header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+
+.category-grid,
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+.category-card,
+.product-card {
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 0.75rem;
+    box-shadow: 0 2px 4px rgba(15, 17, 17, 0.15);
+}
+
+.category-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.product-card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #f0f2f2;
+}
+
+.product-card h3 {
+    font-size: 0.95rem;
+    margin: 0.45rem 0 0.25rem;
+}
+
+.product-card .price {
+    font-weight: 700;
+    color: #b12704;
+}
+
+/* filters */
+
+.page-header {
+    margin-top: 0.5rem;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0.8rem 0 1rem;
+    padding: 0.75rem;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(15, 17, 17, 0.15);
+    font-size: 0.9rem;
+}
+
+.filters select,
+.filters input[type="range"] {
+    margin-left: 0.25rem;
+}
+
+.pagination { /*split across mutlitple pages */
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.pagination button {
+    margin: 0 0.15rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid #d5d9d9;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.pagination button.active {
+    background: #f0c14b;
+    border-color: #a88734;
+}
+
+/* pdp(product detail page) */
+
+.pdp {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 1.5rem;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(15, 17, 17, 0.15);
+    margin-bottom: 1rem;
+}
+
+.pdp img {
+    width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #f0f2f2;
+}
+
+.pdp h1 {
+    font-size: 1.4rem;
+    margin-top: 0;
+}
+
+.pdp .price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #b12704;
+    margin: 0.3rem 0;
+}
+
+.quantity-selector {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0.6rem 0 0.8rem;
+}
+
+.quantity-selector input {
+    width: 60px;
+    padding: 0.2rem;
+}
+
+/* reviews */
+
+.reviews {
+    margin-top: 1rem;
+}
+
+.review-card {
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 0.6rem;
+    margin-bottom: 0.4rem;
+    box-shadow: 0 1px 3px rgba(15, 17, 17, 0.15);
+}
+
+/* cart & checkout */
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    margin-bottom: 0.6rem;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(15, 17, 17, 0.15);
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #f0f2f2;
+}
+
+.cart-summary {
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 0.9rem;
+    box-shadow: 0 1px 3px rgba(15, 17, 17, 0.15);
+    height: fit-content;
+}
+
+.cart-summary .total {
+    font-weight: 700;
+}
+
+/* Checkout */
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.checkout-form fieldset {
+    border: 1px solid #d5d9d9;
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    background: #ffffff;
+}
+
+.checkout-form legend {
+    font-weight: 700;
+    padding: 0 0.25rem;
+}
+
+.checkout-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.checkout-form input {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #d5d9d9;
+    font-size: 0.9rem;
+}
+
+/* authentication */
+
+.auth-page {
+    max-width: 360px;
+    margin: 1.5rem auto;
+    background: #ffffff;
+    padding: 1.25rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(15, 17, 17, 0.15);
+}
+
+.auth-page h1 {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #d5d9d9;
+}
+
+.auth-message {
+    min-height: 1.1rem;
+    font-size: 0.8rem;
+    color: #b12704;
+}
+
+/* Profile */
+
+.profile-page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.profile-card {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 0.9rem;
+    box-shadow: 0 1px 3px rgba(15, 17, 17, 0.15);
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f0f2f2;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+/* Boxes */
+
+.about-page,
+.error-page,
+.confirmation {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(15, 17, 17, 0.15);
+}
+
+/* Footer */
+
+.site-footer {
+    margin-top: 1.5rem;
+    padding: 1.25rem 0.75rem 1.5rem;
+    background: #232f3e;
+    color: #ffffff;
+}
+
+.footer-cols {
+    max-width: 1400px;
+    margin: 0 auto 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.footer-cols h4 {
+    margin: 0 0 0.4rem;
+    font-size: 0.9rem;
+}
+
+.footer-cols a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.footer-cols a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+    .pdp,
+    .cart-layout,
+    .checkout-layout,
+    .profile-page {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .site-header {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "logo"
+            "search"
+            "actions"
+            "nav";
+    }
+    .search-wrapper {
+        margin: 0;
+        max-width: 100%;
+    }
+    .header-right {
+        justify-content: flex-end;
+    }
+    main {
+        padding: 0.75rem 0.4rem 1.2rem;
+    }
+}
+
+
+.breadcrumbs {
+    font-size: 0.8rem;
+    margin: 0.4rem 0;
+}
+.breadcrumbs a {
+    color: #0066c0;
+}
+.breadcrumbs span {
+    font-weight: 700;
+}
+
+
+/* footer */
+
+.newsletter-form input[type="email"] {
+    padding: 0.25rem 0.4rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.newsletter-form button {
+    margin-top: 0.15rem;
+}
+
+.social-icons a {
+    margin-right: 0.3rem;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Footer newsletter and social styles */
+
+.newsletter-row {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+}
+
+#newsletter-email {
+    flex: 1;
+    padding: 0.25rem 0.35rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+.newsletter-label {
+    font-size: 0.8rem;
+}
+
+.newsletter-note {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.footer-social a {
+    display: inline-block;
+    margin-bottom: 0.15rem;
+}
+
+.footer-social a:focus,
+.main-nav a:focus,
+.btn:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Hero slide fade transition */
+
+.hero-slide {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}

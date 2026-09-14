@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+
+    <title>MyShop - Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="js/ui.js" defer></script>        <!-- Dark mode, header behavior -->
+    <script src="js/products.js" defer></script>  <!-- Product-related logic -->
+    <script src="js/cart.js" defer></script>      <!-- Cart functionality -->
+    <script src="js/auth.js" defer></script>      <!-- Login authentication logic -->
+    <script src="js/search.js" defer></script>    <!-- Search & autocomplete -->
+</head>
+
+<body>
+    <!--PAGE PURPOSE Login page for the MyShop demo eCommerce website-->
+
+    <!--  HEADER  -->
+    <header class="site-header">
+
+        <!-- LOGO / BRANDING -->
+        <div class="logo">
+            <a href="index.html">
+                <span>my</span><span>Shop</span>
+            </a>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="search-wrapper">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search products..." 
+                aria-label="Search products">
+
+            <!-- Dynamic search suggestions -->
+            <div 
+                id="search-suggestions" 
+                class="search-suggestions" 
+                aria-live="polite">
+            </div>
+        </div>
+
+        <!-- HEADER ICONS -->
+        <div class="header-right">
+
+            <!-- Dark mode toggle -->
+            <button 
+                id="dark-mode-toggle" 
+                class="icon-button" 
+                aria-label="Toggle dark mode">
+                🌓
+            </button>
+
+            <!-- Shopping cart link -->
+            <a 
+                href="cart.html" 
+                class="icon-button cart-link" 
+                aria-label="View cart">
+                <span>Cart</span> 🛒 <span id="cart-count">0</span>
+            </a>
+
+            <!-- Account icon -->
+            <a 
+                href="login.html" 
+                class="icon-button" 
+                id="account-link">
+                👤
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION -->
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="about.html">Customer Service</a>
+        </nav>
+    </header>
+
+    <!--  MAIN CONTENT  -->
+    <main>
+
+        <!-- AUTHENTICATION SECTION -->
+        <section class="auth-page">
+
+            <!-- Page heading -->
+            <h1>Sign in</h1>
+
+            <!-- LOGIN FORM -->
+            <form 
+                id="login-form" 
+                class="auth-form" 
+                novalidate>
+                <!-- 
+                    novalidate disables browser validation
+                    Custom validation is handled in auth.js
+                -->
+
+                <!-- EMAIL INPUT -->
+                <label>
+                    Email
+                    <input 
+                        type="email" 
+                        id="login-email" 
+                        required>
+                </label>
+
+                <!-- PASSWORD INPUT -->
+                <label>
+                    Password
+                    <input 
+                        type="password" 
+                        id="login-password" 
+                        required>
+                </label>
+
+                <!-- SUBMIT BUTTON -->
+                <button 
+                    type="submit" 
+                    class="btn primary">
+                    Sign in
+                </button>
+
+                <!-- LOGIN STATUS MESSAGE -->
+                <p 
+                    class="auth-message" 
+                    id="login-message">
+                </p>
+
+                <!-- REGISTER LINK -->
+                <p>
+                    New to MyShop? 
+                    <a href="register.html">Create your account</a>
+                </p>
+            </form>
+        </section>
+
+    </main>
+
+    <!--  FOOTER  -->
+    <footer class="site-footer">
+
+        <!-- FOOTER CONTENT COLUMNS -->
+        <div class="footer-cols">
+
+            <!-- ABOUT LINKS -->
+            <div>
+                <h4>Get to Know Us</h4>
+                <a href="about.html">About</a><br>
+                <a href="about.html">Contact</a>
+            </div>
+
+            <!-- DEPARTMENT LINKS -->
+            <div>
+                <h4>Shop by Department</h4>
+                <a href="products.html?category=electronics">Electronics</a><br>
+                <a href="products.html?category=home-kitchen">Home &amp; Kitchen</a><br>
+                <a href="products.html?category=sports-outdoors">Sports &amp; Outdoors</a>
+            </div>
+
+            <!-- NEWSLETTER SIGNUP -->
+            <div>
+                <h4>Stay in the Loop</h4>
+
+                <!-- Front-end only newsletter form -->
+                <form class="newsletter-form">
+                    <label for="newsletter-email">Newsletter</label><br>
+
+                    <input 
+                        type="email" 
+                        id="newsletter-email" 
+                        placeholder="Enter your email">
+
+                    <!-- Redirects to register page -->
+                    <a href="register.html">
+                        <button 
+                            type="button" 
+                            class="btn secondary">
+                            Sign up
+                        </button>
+                    </a>
+                </form>
+            </div>
+
+            <!-- SOCIAL MEDIA LINKS -->
+            <div>
+                <h4>Connect with Us</h4>
+                <p 
+                    class="social-icons" 
+                    aria-label="Social media links">
+
+                    <a href="https://www.facebook.com/" aria-label="Visit our Facebook page">ⓕ</a>
+                    <a href="https://www.instagram.com/" aria-label="Visit our Instagram profile">📸</a>
+                    <a href="https://x.com/" aria-label="Visit our Twitter profile">𝕏</a>
+                </p>
+                <p>Questions? info@myshop.test</p>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <p class="footer-bottom">
+            &copy; <span id="year"></span> MyShop Demo. All rights reserved.
+        </p>
+
+    </footer>
+</body>
+</html>

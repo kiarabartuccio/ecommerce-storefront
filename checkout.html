@@ -1,0 +1,260 @@
+<!-- Declare the document type as HTML5 -->
+<!DOCTYPE html>
+
+<!-- Root HTML element, language set to English -->
+<html lang="en">
+
+<head>
+    <!-- Character encoding for proper text display -->
+    <meta charset="UTF-8">
+
+    <!-- Page title shown in the browser tab -->
+    <title>MyShop - Checkout</title>
+
+    <!-- Responsive design for mobile and desktop screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main site stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- jQuery library (required for scripts below) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- UI behavior (dark mode, hero slider, footer year, etc.) -->
+    <script src="js/ui.js" defer></script>
+
+    <!-- Product data loading and rendering -->
+    <script src="js/products.js" defer></script>
+
+    <!-- Cart logic (add/remove items, totals, checkout) -->
+    <script src="js/cart.js" defer></script>
+
+    <!-- Authentication logic (login, cookies, profile) -->
+    <script src="js/auth.js" defer></script>
+
+    <!-- Search input + suggestions logic -->
+    <script src="js/search.js" defer></script>
+</head>
+
+<body>
+    <!-- PAGE PURPOSE: Checkout page for MyShop demo eCommerce site -->
+
+    <header class="site-header">
+
+        <!-- Site logo linking back to home page -->
+        <div class="logo">
+            <a href="index.html">
+                <span>my</span><span>Shop</span>
+            </a>
+        </div>
+
+        <!-- Search bar container -->
+        <div class="search-wrapper">
+
+            <!-- Search input field -->
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search products..." 
+                aria-label="Search products">
+
+            <!-- Live search suggestions dropdown -->
+            <div 
+                id="search-suggestions" 
+                class="search-suggestions" 
+                aria-live="polite">
+            </div>
+        </div>
+
+        <!-- Header action buttons -->
+        <div class="header-right">
+
+            <!-- Dark mode toggle button -->
+            <button 
+                id="dark-mode-toggle" 
+                class="icon-button" 
+                aria-label="Toggle dark mode">
+                🌓
+            </button>
+
+            <!-- Cart link with item count -->
+            <a 
+                href="cart.html" 
+                class="icon-button cart-link" 
+                aria-label="View cart">
+                <span>Cart</span> 🛒 <span id="cart-count">0</span>
+            </a>
+
+            <!-- Account / login link -->
+            <a 
+                href="login.html" 
+                class="icon-button" 
+                id="account-link">
+                👤
+            </a>
+        </div>
+
+        <!-- Main navigation menu -->
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="about.html">Customer Service</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Page title -->
+        <section class="page-header">
+            <h1>Checkout</h1>
+        </section>
+
+        <!-- Checkout layout: form + order summary -->
+        <section class="checkout-layout" id="checkout-page">
+
+            <!-- Checkout form -->
+            <form id="checkout-form" class="checkout-form" novalidate>
+
+                <!-- Contact information section -->
+                <fieldset>
+                    <legend>Contact information</legend>
+
+                    <label>
+                        Name
+                        <input type="text" id="checkout-name" required>
+                    </label>
+
+                    <label>
+                        Email
+                        <input type="email" id="checkout-email" required>
+                    </label>
+
+                    <label>
+                        Phone
+                        <input type="tel" id="checkout-phone" required>
+                    </label>
+                </fieldset>
+
+                <!-- Shipping address section -->
+                <fieldset>
+                    <legend>Shipping address</legend>
+
+                    <label>
+                        Address
+                        <input type="text" id="checkout-address" required>
+                    </label>
+
+                    <label>
+                        City
+                        <input type="text" id="checkout-city" required>
+                    </label>
+
+                    <label>
+                        Postal code
+                        <input type="text" id="checkout-postal" required>
+                    </label>
+                </fieldset>
+
+                <!-- Delivery options section -->
+                <fieldset>
+                    <legend>Delivery options</legend>
+
+                    <!-- Standard delivery option -->
+                    <label>
+                        <input type="radio" name="delivery" value="standard" checked>
+                        Standard
+                    </label>
+
+                    <!-- Express delivery option -->
+                    <label>
+                        <input type="radio" name="delivery" value="express">
+                        Express
+                    </label>
+                </fieldset>
+
+                <!-- Submit order button -->
+                <button type="submit" class="btn primary">
+                    Place order
+                </button>
+            </form>
+
+            <!-- Order summary sidebar -->
+            <aside class="cart-summary">
+
+                <!-- Summary heading -->
+                <h2>Order summary</h2>
+
+                <!-- List of items in checkout -->
+                <div id="checkout-cart-items"></div>
+
+                <!-- Subtotal display -->
+                <p>
+                    Subtotal: $<span id="checkout-subtotal">0.00</span>
+                </p>
+
+                <!-- Tax display -->
+                <p>
+                    Tax (10%): $<span id="checkout-tax">0.00</span>
+                </p>
+
+                <!-- Total display -->
+                <p class="total">
+                    Total: $<span id="checkout-total">0.00</span>
+                </p>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+
+        <!-- Footer columns -->
+        <div class="footer-cols">
+
+            <!-- About links -->
+            <div>
+                <h4>Get to Know Us</h4>
+                <a href="about.html">About</a><br>
+                <a href="about.html">Contact</a>
+            </div>
+
+            <!-- Category links -->
+            <div>
+                <h4>Shop by Department</h4>
+                <a href="products.html?category=electronics">Electronics</a><br>
+                <a href="products.html?category=home-kitchen">Home &amp; Kitchen</a><br>
+                <a href="products.html?category=sports-outdoors">Sports &amp; Outdoors</a>
+            </div>
+
+            <!-- Newsletter signup (demo only) -->
+            <div>
+                <h4>Stay in the Loop</h4>
+                <form class="newsletter-form">
+                    <label for="newsletter-email">Newsletter</label><br>
+                    <input type="email" id="newsletter-email" placeholder="Enter your email">
+                    <a href="register.html">
+                        <button type="button" class="btn secondary">
+                            Sign up
+                        </button>
+                    </a>
+                </form>
+            </div>
+
+            <!-- Social media links -->
+            <div>
+                <h4>Connect with Us</h4>
+                <p class="social-icons" aria-label="Social media links">
+                    <a href="https://www.facebook.com/" aria-label="Visit our Facebook page">ⓕ</a>
+                    <a href="https://www.instagram.com/" aria-label="Visit our Instagram profile">📸</a>
+                    <a href="https://x.com/" aria-label="Visit our Twitter profile">𝕏</a>
+                </p>
+                <p>Questions? info@myshop.test</p>
+            </div>
+        </div>
+
+        <!-- Footer copyright -->
+        <p class="footer-bottom">
+            &copy; <span id="year"></span> MyShop Demo. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>

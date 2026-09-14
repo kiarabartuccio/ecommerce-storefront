@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!--CHARACTER ENCODING Ensures correct rendering of special characters-->
+    <meta charset="UTF-8">
+
+    <!--PAGE TITLE Displayed in the browser tab-->
+    <title>MyShop - Products</title>
+
+    <!--RESPONSIVE VIEWPORT Allows proper scaling on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--MAIN STYLESHEET Controls layout, typography, colors, and responsiveness-->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--JQUERY LIBRARY Used for DOM manipulation and UI behavior-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <!--Displays all products with filtering, sorting, and pagination-->
+
+    <!--  HEADER  -->
+    <header class="site-header">
+
+        <!-- BRAND LOGO -->
+        <div class="logo">
+            <a href="index.html">
+                <span>my</span><span>Shop</span>
+            </a>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="search-wrapper">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search products..." 
+                aria-label="Search products">
+
+            <!-- Dynamic search suggestions injected by JS -->
+            <div 
+                id="search-suggestions" 
+                class="search-suggestions" 
+                aria-live="polite">
+            </div>
+        </div>
+
+        <!-- HEADER ICONS -->
+        <div class="header-right">
+
+            <!-- Dark mode toggle -->
+            <button 
+                id="dark-mode-toggle" 
+                class="icon-button" 
+                aria-label="Toggle dark mode">
+                🌓
+            </button>
+
+            <!-- Cart link with live item count -->
+            <a 
+                href="cart.html" 
+                class="icon-button cart-link" 
+                aria-label="View cart">
+                <span>Cart</span> 🛒 <span id="cart-count">0</span>
+            </a>
+
+            <!-- Account / login icon -->
+            <a 
+                href="login.html" 
+                class="icon-button" 
+                id="account-link">
+                👤
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION -->
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="about.html">Customer Service</a>
+        </nav>
+    </header>
+
+    <!--  MAIN CONTENT  -->
+    <main>
+
+        <!-- BREADCRUMB NAVIGATION -->
+        <!-- Shows current category path -->
+        <nav 
+            class="breadcrumbs" 
+            id="breadcrumbs" 
+            aria-label="Breadcrumb">
+        </nav>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+            <h1>All Products</h1>
+
+            <!-- Displays product count / filter info -->
+            <p id="product-results-info"></p>
+        </section>
+
+        <!--  FILTER CONTROLS  -->
+        <section class="filters">
+
+            <!-- CATEGORY FILTER -->
+            <div>
+                <label for="category-filter">Category:</label>
+                <select id="category-filter">
+                    <!-- Options populated dynamically -->
+                    <option value="">All</option>
+                </select>
+            </div>
+
+            <!-- PRICE RANGE FILTER -->
+            <div>
+                <label for="price-range">
+                    Max price: <span id="price-range-value"></span>$
+                </label>
+                <input 
+                    type="range" 
+                    id="price-range" 
+                    min="0" 
+                    max="1000" 
+                    value="1000">
+            </div>
+
+            <!-- SORTING OPTIONS -->
+            <div>
+                <label for="sort-select">Sort by:</label>
+                <select id="sort-select">
+                    <option value="">Default</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                </select>
+            </div>
+        </section>
+
+        <!--  PRODUCT LIST  -->
+        <section>
+
+            <!-- Product cards generated dynamically -->
+            <div 
+                class="product-grid" 
+                id="product-list">
+            </div>
+
+            <!-- Pagination controls -->
+            <div 
+                class="pagination" 
+                id="pagination">
+            </div>
+        </section>
+
+    </main>
+
+    <!--  FOOTER  -->
+    <footer class="site-footer">
+
+        <!-- FOOTER CONTENT COLUMNS -->
+        <div class="footer-cols">
+
+            <!-- ABOUT LINKS -->
+            <div>
+                <h4>Get to Know Us</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- SHOP BY DEPARTMENT -->
+            <div>
+                <h4>Shop by Department</h4>
+                <ul>
+                    <li><a href="products.html?category=electronics">Electronics</a></li>
+                    <li><a href="products.html?category=home-kitchen">Home &amp; Kitchen</a></li>
+                    <li><a href="products.html?category=sports-outdoors">Sports &amp; Outdoors</a></li>
+                </ul>
+            </div>
+
+            <!-- NEWSLETTER SIGNUP -->
+            <div>
+                <h4>Stay in the Loop</h4>
+
+                <!-- Front-end only newsletter form -->
+                <form class="newsletter-form">
+                    <label for="newsletter-email">Newsletter</label><br>
+
+                    <input 
+                        type="email" 
+                        id="newsletter-email" 
+                        placeholder="Enter your email">
+
+                    <!-- Redirects to registration page -->
+                    <a href="register.html">
+                        <button 
+                            type="button" 
+                            class="btn secondary">
+                            Sign up
+                        </button>
+                    </a>
+                </form>
+            </div>
+
+            <!-- SOCIAL MEDIA LINKS -->
+            <div>
+                <h4>Connect with Us</h4>
+                <p 
+                    class="social-icons" 
+                    aria-label="Social media links">
+
+                    <a href="https://www.facebook.com/" aria-label="Visit our Facebook page">ⓕ</a>
+                    <a href="https://www.instagram.com/" aria-label="Visit our Instagram profile">📸</a>
+                    <a href="https://x.com/" aria-label="Visit our Twitter profile">𝕏</a>
+                </p>
+                <p>Questions? info@myshop.test</p>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <p class="footer-bottom">
+            &copy; <span id="year"></span> MyShop Demo. All rights reserved.
+        </p>
+    </footer>
+
+    <!--  JAVASCRIPT FILES  -->
+    <!-- Loaded last for performance -->
+    <script src="js/ui.js" defer></script>        <!-- UI & dark mode -->
+    <script src="js/products.js" defer></script>  <!-- Filtering, sorting, pagination -->
+    <script src="js/cart.js" defer></script>      <!-- Cart handling -->
+    <script src="js/auth.js" defer></script>      <!-- Login/session logic -->
+    <script src="js/search.js" defer></script>    <!-- Search & autocomplete -->
+</body>
+</html>

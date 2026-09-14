@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>MyShop - Home</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="js/ui.js" defer></script>        <!-- UI interactions (dark mode, header, etc.) -->
+    <script src="js/products.js" defer></script>  <!-- Product data and rendering -->
+    <script src="js/cart.js" defer></script>      <!-- Shopping cart logic -->
+    <script src="js/auth.js" defer></script>      <!-- Login / user account logic -->
+    <script src="js/search.js" defer></script>    <!-- Search & autocomplete -->
+</head>
+
+<body>
+    <!-- PAGE PURPOSE Home page for MyShop demo eCommerce website-->
+
+    <!--  HEADER  -->
+    <header class="site-header">
+
+        <!-- LOGO SECTION -->
+        <div class="logo">
+            <a href="index.html">
+                <span>my</span><span>Shop</span>
+            </a>
+        </div>
+
+        <!-- SEARCH BAR SECTION -->
+        <div class="search-wrapper">
+            <!-- Search input -->
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search products..." 
+                aria-label="Search products"
+            >
+
+            <!-- Search suggestion dropdown -->
+            <div 
+                id="search-suggestions" 
+                class="search-suggestions" 
+                aria-live="polite">
+            </div>
+        </div>
+
+        <!-- HEADER RIGHT ICONS -->
+        <div class="header-right">
+            <!-- Dark mode toggle button -->
+            <button 
+                id="dark-mode-toggle" 
+                class="icon-button" 
+                aria-label="Toggle dark mode">
+                🌓
+            </button>
+
+            <!-- Cart link with item count -->
+            <a 
+                href="cart.html" 
+                class="icon-button cart-link" 
+                aria-label="View cart">
+                <span>Cart</span> 🛒 <span id="cart-count">0</span>
+            </a>
+
+            <!-- Account / login icon -->
+            <a 
+                href="login.html" 
+                class="icon-button" 
+                id="account-link">
+                👤
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION -->
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="about.html">Customer Service</a>
+        </nav>
+    </header>
+
+    <!--  MAIN CONTENT  -->
+    <main class="main-content">
+
+        <!-- HERO / PROMOTIONAL SLIDER -->
+        <section class="hero-section">
+            <div class="hero-slider">
+
+                <!-- SLIDE 1 -->
+                <div class="hero-slide active">
+                    <!-- Optional background image commented out -->
+                    <!-- <img src="images/hero1.jpg" alt="Featured Promo 1"> -->
+
+                    <div class="hero-content">
+                        <h2>Holiday Mega Sale!</h2>
+                        <p>Up to 50% off Electronics and Gadgets.</p>
+                        <a 
+                            href="products.html?category=electronics" 
+                            class="btn primary">
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2 -->
+                <div class="hero-slide">
+                    <!-- <img src="images/hero2.jpg" alt="Featured Promo 2"> -->
+
+                    <div class="hero-content">
+                        <h2>New Arrivals: Home & Kitchen</h2>
+                        <p>Fresh gadgets to upgrade your cooking space.</p>
+                        <a 
+                            href="products.html?category=home-kitchen" 
+                            class="btn secondary">
+                            Discover
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CATEGORY SECTION -->
+        <section class="categories-section container">
+            <h2>Shop by Category</h2>
+
+            <!-- Categories dynamically loaded via JS -->
+            <div 
+                class="category-list" 
+                id="category-list">
+            </div>
+        </section>
+
+        <!-- FEATURED PRODUCTS SECTION -->
+        <section class="featured-products-section container">
+            <h2>Featured Products</h2>
+
+            <!-- Product cards injected dynamically -->
+            <div 
+                class="product-grid" 
+                id="featured-products">
+            </div>
+
+            <!-- View all products button -->
+            <div class="text-center">
+                <a 
+                    href="products.html" 
+                    class="btn secondary">
+                    View All Products
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!--  FOOTER  -->
+    <footer class="site-footer">
+
+        <!-- FOOTER COLUMNS -->
+        <div class="footer-cols">
+
+            <!-- ABOUT LINKS -->
+            <div>
+                <h4>Get to Know Us</h4>
+                <a href="about.html">About</a><br>
+                <a href="about.html">Contact</a>
+            </div>
+
+            <!-- DEPARTMENT LINKS -->
+            <div>
+                <h4>Shop by Department</h4>
+                <a href="products.html?category=electronics">Electronics</a><br>
+                <a href="products.html?category=home-kitchen">Home &amp; Kitchen</a><br>
+                <a href="products.html?category=sports-outdoors">Sports &amp; Outdoors</a>
+            </div>
+
+            <!-- NEWSLETTER FORM -->
+            <div>
+                <h4>Stay in the Loop</h4>
+                <!-- Demo-only form -->
+                <form 
+                    class="newsletter-form" 
+                    onsubmit="event.preventDefault(); alert('Thanks for subscribing! (Demo only)');">
+
+                    <label for="newsletter-email">Newsletter</label><br>
+                    <input 
+                        type="email" 
+                        id="newsletter-email" 
+                        placeholder="Enter your email">
+                    <button 
+                        type="submit" 
+                        class="btn secondary">
+                        Sign up
+                    </button>
+                </form>
+            </div>
+
+            <!-- SOCIAL MEDIA -->
+            <div>
+                <h4>Connect with Us</h4>
+                <p 
+                    class="social-icons" 
+                    aria-label="Social media links">
+
+                    <a href="https://www.facebook.com/" aria-label="Visit our Facebook page">ⓕ</a>
+                    <a href="https://www.instagram.com/" aria-label="Visit our Instagram profile">📸</a>
+                    <a href="https://x.com/" aria-label="Visit our Twitter profile">𝕏</a>
+                </p>
+                <p>Questions? info@myshop.test</p>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <p class="footer-bottom">
+            &copy; <span id="year"></span> MyShop Demo. All rights reserved.
+        </p>
+
+    </footer>
+</body>
+</html>

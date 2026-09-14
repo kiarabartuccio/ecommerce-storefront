@@ -1,31 +1,31 @@
-# E-Commerce Storefront
+# MyShop E-Commerce Storefront
 
-A responsive front-end shopping experience built with HTML, CSS, JavaScript, jQuery, JSON, and XML. The site demonstrates a complete customer journey from browsing products to checkout and confirmation.
+A multi-page e-commerce storefront built with HTML, CSS, JavaScript, jQuery, JSON, and XML. The application demonstrates product discovery, browser-based account state, cart management, checkout, and responsive interface design.
 
 ## Features
 
-- Responsive home page and product catalogue
-- Product search and category filtering
-- Individual product pages and reviews
-- Shopping-cart quantity and total management
-- Registration, login, profile, and logout flows
-- Checkout and order-confirmation screens
-- Cookie-based session and cart persistence
+- Product catalogue with category filtering and pagination
+- Search suggestions and individual product pages
+- Shopping cart with persistent browser storage
+- Registration and login through a demonstration API
+- Checkout and confirmation flow
+- User profile page
+- Product ratings and reviews
+- Responsive layout and dark mode
 - Product and category data loaded from JSON and XML
-- Custom 404 and About pages
 
 ## Technologies
 
 - HTML5
 - CSS3
 - JavaScript and jQuery
+- AJAX
 - JSON and XML
-- Browser cookies and local client-side state
-- ReqRes demo API for authentication requests
+- Cookies and local storage
 
-## Run locally
+## Run Locally
 
-Because the project loads local JSON and XML files, run it through a local web server instead of opening `index.html` directly.
+Because the site loads local data files, serve it through a local web server rather than opening `index.html` directly.
 
 ```bash
 python -m http.server 8000
@@ -33,14 +33,10 @@ python -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
-## Important note
+## Important Note
 
-This is an academic front-end demonstration. Authentication uses a public demo API and is not intended for production accounts or real payment information.
+Authentication uses the ReqRes demonstration API and is intended only to demonstrate front-end request handling. This is an educational project, not a production shopping service.
 
-## Learning outcomes
+## What I Practiced
 
-This project strengthened my understanding of responsive layouts, DOM manipulation, asynchronous requests, structured data, browser persistence, reusable JavaScript modules, and end-to-end user flows.
-
-## Author
-
-Kiara Bartuccio — Computer Technology student at Vanier College.
+This project strengthened my skills in DOM manipulation, asynchronous requests, persistent client-side state, responsive design, structured data, reusable JavaScript, and multi-page navigation.
